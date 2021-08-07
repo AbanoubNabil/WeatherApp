@@ -17,22 +17,28 @@ protocol CityForcastListRouterProtocol {
     static func assembleModule() -> UIViewController
 }
 
+// MARK: - CityForcastList Remote DataSource
+protocol CityForcastListRemoteDataSourceProtocol: AnyObject {
+    var forecastAPISerivce: ForecastRemoteServiceProtocol? { get set }
+}
+
 // MARK: - CityForcastList Interactor
 
-protocol CityForcastListInputInteractorProtocol: class {
+protocol CityForcastListInteractorProtocol: AnyObject {
     var presenter: CityForcastListOutputInteractorProtocol? { get set }
+    var remoteDataSource: CityForcastListRemoteDataSource? { get set }
     // Presenter -> Interactor
 }
 
-protocol CityForcastListOutputInteractorProtocol: class {
+protocol CityForcastListOutputInteractorProtocol: AnyObject {
     // Interactor -> Presenter
 }
 
 // MARK: - CityForcastList Preseneter
 
-protocol CityForcastListPresenterProtocol: class {
+protocol CityForcastListPresenterProtocol: AnyObject {
     var view: CityForcastListViewProtocol? { get set}
-    var interactor: CityForcastListInputInteractorProtocol? { get set}
+    var interactor: CityForcastListInteractorProtocol? { get set}
     var router: CityForcastListRouterProtocol? { get set }
     // view -> Presenter
     func viewDidLoad()
@@ -40,7 +46,7 @@ protocol CityForcastListPresenterProtocol: class {
 
 // MARK: - CityForcastList View
 
-protocol CityForcastListViewProtocol: class {
+protocol CityForcastListViewProtocol: AnyObject {
     var presenter: CityForcastListPresenterProtocol! { get set }
     // Presenter -> View
 }

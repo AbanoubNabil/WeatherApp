@@ -10,10 +10,10 @@ import Foundation
 class CityForcastListPresenter: CityForcastListPresenterProtocol {
     // MARK: - Attributes
     weak var view: CityForcastListViewProtocol?
-    var interactor: CityForcastListInputInteractorProtocol?
+    var interactor: CityForcastListInteractorProtocol?
     var router: CityForcastListRouterProtocol?
     // MARK: - Init
-    init(view: CityForcastListViewProtocol?, interactor: CityForcastListInputInteractorProtocol, router: CityForcastListRouterProtocol ) {
+    init(view: CityForcastListViewProtocol?, interactor: CityForcastListInteractorProtocol, router: CityForcastListRouterProtocol ) {
         self.view = view
         self.interactor = interactor
         self.router = router

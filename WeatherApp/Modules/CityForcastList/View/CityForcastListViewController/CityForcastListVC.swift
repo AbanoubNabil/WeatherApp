@@ -28,6 +28,6 @@ class CityForcastListViewController: UIViewController, CityForcastListViewProtoc
     // MARK: - Actions
     // MARK: - DeInit
     deinit {
-         debugPrint(CityForcastListViewController.className + "Release from Momery")
+         debugPrint(CityForcastListViewController.className + " Release from Momery")
     }
 }

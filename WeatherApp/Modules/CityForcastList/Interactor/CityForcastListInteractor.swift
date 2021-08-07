@@ -7,8 +7,17 @@
 
 import Foundation
 
-class CityForcastListInteractor: CityForcastListInputInteractorProtocol {
+class CityForcastListInteractor: CityForcastListInteractorProtocol {
+    
     // MARK: - Attributes
+    
     weak var presenter: CityForcastListOutputInteractorProtocol?
+    var remoteDataSource: CityForcastListRemoteDataSource?
+    
+    // MARK: - Init
+    init(remoteDataSource: CityForcastListRemoteDataSource) {
+        self.remoteDataSource = remoteDataSource
+    }
+    
     // MARK: - Methods
 }
