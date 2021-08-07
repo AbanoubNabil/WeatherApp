@@ -23,7 +23,7 @@ enum Environment: String {
         return "openweathermap.org/data/2.5"
     }
     var apiDomain: String {
-        return "api.\(serverDomain)"
+        return "https://api.\(serverDomain)"
     }
     
     // MARK: - URL

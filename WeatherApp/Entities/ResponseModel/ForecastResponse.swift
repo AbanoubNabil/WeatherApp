@@ -13,4 +13,9 @@ struct ForecastResponse: Codable {
     let message, cnt: Int
     let forecast: [Forecast]
     let city: City
+    
+    enum CodingKeys: String, CodingKey {
+        case cod, message, cnt, city
+        case forecast = "list"
+    }
 }

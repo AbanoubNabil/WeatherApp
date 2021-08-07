@@ -20,6 +20,7 @@ class CityForcastListPresenter: CityForcastListPresenterProtocol {
     }
     // MARK: - Methods
     func viewDidLoad() {
+        interactor?.fetchCityForecast(city: "cairo")
     }
 }
 // MARK: - CityForcastListOutputInteractorProtocol Implementation

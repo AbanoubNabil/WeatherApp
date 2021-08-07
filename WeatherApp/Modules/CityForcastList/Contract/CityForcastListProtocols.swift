@@ -18,8 +18,8 @@ protocol CityForcastListRouterProtocol {
 }
 
 // MARK: - CityForcastList Remote DataSource
-protocol CityForcastListRemoteDataSourceProtocol: AnyObject {
-    var forecastAPISerivce: ForecastRemoteServiceProtocol? { get set }
+protocol CityForcastListRemoteDataSourceProtocol: AnyObject, ForecastRemoteServiceProtocol {
+
 }
 
 // MARK: - CityForcastList Interactor
@@ -28,6 +28,7 @@ protocol CityForcastListInteractorProtocol: AnyObject {
     var presenter: CityForcastListOutputInteractorProtocol? { get set }
     var remoteDataSource: CityForcastListRemoteDataSource? { get set }
     // Presenter -> Interactor
+    func fetchCityForecast(city: String)
 }
 
 protocol CityForcastListOutputInteractorProtocol: AnyObject {
