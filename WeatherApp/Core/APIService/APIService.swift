@@ -19,8 +19,11 @@ class RemoteServiceType: EnvironmentProtocol {
 class APIService<T: TargetType> {
     
     // MARK: - Attributes
+    
+    /// Moya Generic  API Provider
     private let provider: MoyaProvider<T>
     
+    /// Format Request  Data to String
     private let jsonDataFormatter = { (_ data: Data) -> String  in
         do {
             let dataAsJSON = try JSONSerialization.jsonObject(with: data)
@@ -31,6 +34,7 @@ class APIService<T: TargetType> {
         }
     }
     
+    /// Seting chache policy
     private let endpointClosure = { (target: T) -> Endpoint in
        let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
        var request = try? defaultEndpoint.urlRequest()
@@ -45,11 +49,18 @@ class APIService<T: TargetType> {
                                    stubClosure: stubClosure,
                                    session: Session.default,
                                    plugins: [NetworkLoggerPlugin(configuration: .init(formatter: .init( requestData: jsonDataFormatter, responseData: jsonDataFormatter), logOptions: .verbose))])
+        // seting request time out
         provider.session.sessionConfiguration.timeoutIntervalForRequest = 20
         provider.session.sessionConfiguration.timeoutIntervalForResource = 20
     }
     
     // MARK: - Methods
+    
+    /// make network call
+    /// - Parameters:
+    ///   - target: Protocol used to define the specifications necessary for a `MoyaProvider`.
+    ///   - objType: Mapped object type that return form the netwok call
+    ///   - completionHandler: clousre Return Result Pattern that  has to case if network success it will returns the mapped object else returns error
     func request<C: Codable>(target: T, objType: C.Type, completionHandler:  @escaping (_ result: Result<C, Error>) -> Void) {
         provider.request(target) { (result) in
             switch result {
