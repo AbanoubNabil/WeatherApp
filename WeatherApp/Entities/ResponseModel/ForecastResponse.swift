@@ -14,5 +14,3 @@ struct ForecastResponse: Codable {
     let forecast: [Forecast]
     let city: City
 }
-
-
