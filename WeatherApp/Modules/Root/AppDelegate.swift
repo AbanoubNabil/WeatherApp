@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = CityForcastListRouter.assembleModule()
         window?.makeKeyAndVisible()
     }
     // MARK: - Core Data stack
