@@ -15,9 +15,15 @@ def network
   pod 'Kingfisher', '~> 6.1.1'
 end
 
+
+def localStorage
+  pod 'RealmSwift', '~> 10.12.0'
+end
+
 def develepementPods
   codeFormat
   network
+  localStorage
 end
 
 target 'WeatherApp' do
