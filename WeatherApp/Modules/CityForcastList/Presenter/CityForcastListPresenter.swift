@@ -12,6 +12,9 @@ class CityForcastListPresenter: CityForcastListPresenterProtocol {
     weak var view: CityForcastListViewProtocol?
     var interactor: CityForcastListInteractorProtocol?
     var router: CityForcastListRouterProtocol?
+    private var forecastData: [Main] = []
+    
+    
     // MARK: - Init
     init(view: CityForcastListViewProtocol?, interactor: CityForcastListInteractorProtocol, router: CityForcastListRouterProtocol ) {
         self.view = view
@@ -20,9 +23,33 @@ class CityForcastListPresenter: CityForcastListPresenterProtocol {
     }
     // MARK: - Methods
     func viewDidLoad() {
-        interactor?.fetchCityForecast(city: "cairo")
+        
     }
+    
+    func didPressSearch(with city: String) {
+        interactor?.fetchCityForecast(city: city)
+    }
+    
+    func dequeueCellAt(index: Int) -> Main {
+        return forecastData[index]
+    }
+    
+    var forecastCountItemsCount: Int {
+        return forecastData.count
+    }
+    
 }
+
 // MARK: - CityForcastListOutputInteractorProtocol Implementation
 extension CityForcastListPresenter: CityForcastListOutputInteractorProtocol {
+    func forecastListFetchedSuccessfully(forecastList: [Main]) {
+        print(forecastList)
+        forecastData = forecastList
+        view?.updateForcastData()
+    }
+    
+    func forecastListFetchedWithError(_ error: Error) {
+
+    }
+    
 }

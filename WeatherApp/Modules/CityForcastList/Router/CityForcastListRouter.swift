@@ -19,8 +19,14 @@ class CityForcastListRouter: CityForcastListRouterProtocol {
     static func assembleModule() -> UIViewController {
         let router = CityForcastListRouter()
         let forecastAPIService = ForecastRemoteService()
+        let forcastLocalService = ForecastLocalService()
+        
         let forecastRemoteDataSource = CityForcastListRemoteDataSource(forecastAPISerivce: forecastAPIService)
-        let interactor = CityForcastListInteractor(remoteDataSource: forecastRemoteDataSource)
+      
+        let forecastLocalDataSource = CityForcastLocalDataSource(forecastAPISerivce: forcastLocalService)
+        
+        let interactor = CityForcastListInteractor(remoteDataSource: forecastRemoteDataSource, localDataSource: forecastLocalDataSource)
+        
         let view = CityForcastListViewController()
         let presenter = CityForcastListPresenter(view: view, interactor: interactor, router: router)
         router.viewController = view

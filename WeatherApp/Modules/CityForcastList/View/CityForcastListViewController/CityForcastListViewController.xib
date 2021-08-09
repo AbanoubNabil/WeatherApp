@@ -5,11 +5,14 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityForcastListViewController" customModule="WeatherApp" customModuleProvider="target">
             <connections>
+                <outlet property="cityTextField" destination="4oh-UD-hap" id="ePr-aG-aPX"/>
+                <outlet property="tableView" destination="RfH-Yv-09E" id="lA0-Mx-zVe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,9 +20,54 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RfH-Yv-09E">
+                    <rect key="frame" x="0.0" y="142" width="414" height="720"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="7r2-Ze-M1N"/>
+                        <outlet property="delegate" destination="-1" id="SON-Nu-lsG"/>
+                    </connections>
+                </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="24X-0N-tfD">
+                    <rect key="frame" x="16" y="76" width="382" height="34"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Seaarch with city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4oh-UD-hap">
+                            <rect key="frame" x="0.0" y="0.0" width="298" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHr-oR-bav">
+                            <rect key="frame" x="322" y="0.0" width="60" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="IhD-t6-Bkn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="Search"/>
+                            <connections>
+                                <action selector="searchCity:" destination="-1" eventType="touchUpInside" id="mFR-LV-JRz"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="141" y="125"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="24X-0N-tfD" secondAttribute="trailing" constant="16" id="7ts-gv-Dzq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="RfH-Yv-09E" secondAttribute="bottom" id="C2g-D1-hVw"/>
+                <constraint firstItem="RfH-Yv-09E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LME-A8-xNm"/>
+                <constraint firstItem="RfH-Yv-09E" firstAttribute="top" secondItem="24X-0N-tfD" secondAttribute="bottom" constant="32" id="N7z-nT-SzB"/>
+                <constraint firstItem="24X-0N-tfD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="kwy-bK-m3q"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RfH-Yv-09E" secondAttribute="trailing" id="p3p-VZ-7dU"/>
+                <constraint firstItem="24X-0N-tfD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="wn4-zC-2hz"/>
+            </constraints>
+            <point key="canvasLocation" x="140.57971014492756" y="124.55357142857142"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
