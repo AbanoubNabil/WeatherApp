@@ -9,10 +9,24 @@ import Foundation
 
 // MARK: - Main
 struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure: Double
+    var temp: Double = 0
+    var feelsLike: Double = 0
+    var tempMin: Double = 0
+    var tempMax: Double = 0
+    var pressure: Double = 0
     var cityName: String = ""
     var dt: Int = 0
+    
+    init() {
+    }
+    
+    init(temp: Double, feelsLike: Double, tempMin: Double, tempMax: Double, pressure: Double) {
+        self.temp = temp
+        self.feelsLike = feelsLike
+        self.tempMin = tempMin
+        self.tempMax = tempMax
+        self.pressure = pressure
+    }
     
     enum CodingKeys: String, CodingKey {
         case temp

@@ -24,8 +24,9 @@ class DataBaseManager {
     
     func getWeatherData(forCity city: String) -> [ForecastEntity] {
         guard let realm = realm else { return  [] }
-        let forecast = realm.objects(ForecastEntity.self).toArray()
-        return forecast.filter({$0.cityName == city})
+        let predicate = NSPredicate(format: "cityName BEGINSWITH [c]%@", city)
+        let forecast = realm.objects(ForecastEntity.self).filter(predicate).toArray()
+        return forecast
     }
     
     func checkForCorruptDB() {

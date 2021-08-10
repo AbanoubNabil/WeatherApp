@@ -15,7 +15,9 @@ class CityForcastListInteractor: CityForcastListInteractorProtocol {
     var localDataSource: CityForcastListLocalDataSourceProtocol
     
     // MARK: - Init
-    init(remoteDataSource: CityForcastListRemoteDataSourceProtocol, localDataSource: CityForcastListLocalDataSourceProtocol) {
+    init(
+        remoteDataSource: CityForcastListRemoteDataSourceProtocol, localDataSource: CityForcastListLocalDataSourceProtocol
+    ) {
         self.remoteDataSource = remoteDataSource
         self.localDataSource = localDataSource
     }

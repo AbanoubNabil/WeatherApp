@@ -12,9 +12,7 @@ import UIKit
 
 protocol CityForcastListRouterProtocol {
     // Presenter -> Router
-    var viewController: UIViewController? { get set }
     func go(to router: CityForcastListRouter.CityForcastListRoute)
-    static func assembleModule() -> UIViewController
 }
 
 // MARK: - CityForcastList Remote DataSource

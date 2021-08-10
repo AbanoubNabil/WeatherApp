@@ -45,6 +45,11 @@
 		186A6C1A26C1E789005F7F6B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6C1926C1E789005F7F6B /* ErrorView.swift */; };
 		186A6C2026C1E8B3005F7F6B /* UIView+LoadNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6C1F26C1E8B3005F7F6B /* UIView+LoadNib.swift */; };
 		186A6C2826C208A0005F7F6B /* ErrorUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6C2726C208A0005F7F6B /* ErrorUIModel.swift */; };
+		186A6D2726C2CDC9005F7F6B /* CityForcastListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6D2626C2CDC9005F7F6B /* CityForcastListPresenterTests.swift */; };
+		186A6D3026C2CEAD005F7F6B /* CityForcastListViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6D2F26C2CEAD005F7F6B /* CityForcastListViewSpy.swift */; };
+		186A6D4126C2D18E005F7F6B /* CityForcastListRemoteDataSourceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6D4026C2D18E005F7F6B /* CityForcastListRemoteDataSourceStub.swift */; };
+		186A6D4D26C30469005F7F6B /* CityForecastInteractorStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6D4C26C30469005F7F6B /* CityForecastInteractorStub.swift */; };
+		186A6D6426C306DC005F7F6B /* CityForcastListLocalDataSourceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A6D6326C306DC005F7F6B /* CityForcastListLocalDataSourceStub.swift */; };
 		188B308626BEF51F00547664 /* ForecastLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B308526BEF51F00547664 /* ForecastLocalService.swift */; };
 		188B308B26BEF56200547664 /* ForecastLocalServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B308A26BEF56200547664 /* ForecastLocalServiceProtocol.swift */; };
 		188B309126BEF69800547664 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B309026BEF69800547664 /* DataBaseManager.swift */; };
@@ -119,6 +124,11 @@
 		186A6C1926C1E789005F7F6B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		186A6C1F26C1E8B3005F7F6B /* UIView+LoadNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LoadNib.swift"; sourceTree = "<group>"; };
 		186A6C2726C208A0005F7F6B /* ErrorUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUIModel.swift; sourceTree = "<group>"; };
+		186A6D2626C2CDC9005F7F6B /* CityForcastListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForcastListPresenterTests.swift; sourceTree = "<group>"; };
+		186A6D2F26C2CEAD005F7F6B /* CityForcastListViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForcastListViewSpy.swift; sourceTree = "<group>"; };
+		186A6D4026C2D18E005F7F6B /* CityForcastListRemoteDataSourceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForcastListRemoteDataSourceStub.swift; sourceTree = "<group>"; };
+		186A6D4C26C30469005F7F6B /* CityForecastInteractorStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastInteractorStub.swift; sourceTree = "<group>"; };
+		186A6D6326C306DC005F7F6B /* CityForcastListLocalDataSourceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForcastListLocalDataSourceStub.swift; sourceTree = "<group>"; };
 		188B308526BEF51F00547664 /* ForecastLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastLocalService.swift; sourceTree = "<group>"; };
 		188B308A26BEF56200547664 /* ForecastLocalServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastLocalServiceProtocol.swift; sourceTree = "<group>"; };
 		188B309026BEF69800547664 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
@@ -204,6 +214,7 @@
 		183C6F6626BEB7B800430C6A /* WeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				186A6C3F26C28330005F7F6B /* TestRepoBussiness */,
 				183C6F6726BEB7B800430C6A /* WeatherAppTests.swift */,
 				183C6F6926BEB7B900430C6A /* Info.plist */,
 			);
@@ -532,6 +543,50 @@
 			path = UIVIew;
 			sourceTree = "<group>";
 		};
+		186A6C3F26C28330005F7F6B /* TestRepoBussiness */ = {
+			isa = PBXGroup;
+			children = (
+				186A6D2426C2CD95005F7F6B /* CityForcastList */,
+			);
+			path = TestRepoBussiness;
+			sourceTree = "<group>";
+		};
+		186A6D2426C2CD95005F7F6B /* CityForcastList */ = {
+			isa = PBXGroup;
+			children = (
+				186A6D2526C2CDA5005F7F6B /* PresenterTests */,
+			);
+			path = CityForcastList;
+			sourceTree = "<group>";
+		};
+		186A6D2526C2CDA5005F7F6B /* PresenterTests */ = {
+			isa = PBXGroup;
+			children = (
+				186A6D3726C2CFB7005F7F6B /* Stub */,
+				186A6D2E26C2CE5D005F7F6B /* ViewSpy */,
+				186A6D2626C2CDC9005F7F6B /* CityForcastListPresenterTests.swift */,
+			);
+			path = PresenterTests;
+			sourceTree = "<group>";
+		};
+		186A6D2E26C2CE5D005F7F6B /* ViewSpy */ = {
+			isa = PBXGroup;
+			children = (
+				186A6D2F26C2CEAD005F7F6B /* CityForcastListViewSpy.swift */,
+			);
+			path = ViewSpy;
+			sourceTree = "<group>";
+		};
+		186A6D3726C2CFB7005F7F6B /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				186A6D4C26C30469005F7F6B /* CityForecastInteractorStub.swift */,
+				186A6D4026C2D18E005F7F6B /* CityForcastListRemoteDataSourceStub.swift */,
+				186A6D6326C306DC005F7F6B /* CityForcastListLocalDataSourceStub.swift */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
 		188B308F26BEF68000547664 /* LocalService */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,7 +912,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186A6D4D26C30469005F7F6B /* CityForecastInteractorStub.swift in Sources */,
+				186A6D6426C306DC005F7F6B /* CityForcastListLocalDataSourceStub.swift in Sources */,
+				186A6D4126C2D18E005F7F6B /* CityForcastListRemoteDataSourceStub.swift in Sources */,
 				183C6F6826BEB7B800430C6A /* WeatherAppTests.swift in Sources */,
+				186A6D3026C2CEAD005F7F6B /* CityForcastListViewSpy.swift in Sources */,
+				186A6D2726C2CDC9005F7F6B /* CityForcastListPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
