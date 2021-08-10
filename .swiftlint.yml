@@ -1,0 +1,12 @@
+
+identifier_name:
+  min_length: 2
+disabled_rules:
+# rule identifiers to exclude from running
+ - line_length
+ - weak_delegate
+ - trailing_whitespace
+excluded:
+# paths to ignore during linting. Takes precedence over `included`.
+ - Pods
+ - Resources/Localization/Localization.json
