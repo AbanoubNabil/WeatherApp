@@ -20,10 +20,10 @@ enum Environment: String {
     
     // MARK: - Domain
     var serverDomain: String {
-        return "openweathermap.org/data/2.5/forecast"
+        return "openweathermap.org/data/2.5"
     }
     var apiDomain: String {
-        return "api.\(serverDomain)"
+        return "https://api.\(serverDomain)"
     }
     
     // MARK: - URL
