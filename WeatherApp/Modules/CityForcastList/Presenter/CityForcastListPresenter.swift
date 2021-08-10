@@ -14,7 +14,6 @@ class CityForcastListPresenter: CityForcastListPresenterProtocol {
     var router: CityForcastListRouterProtocol?
     private var forecastData: [Main] = []
     
-    
     // MARK: - Init
     init(view: CityForcastListViewProtocol?, interactor: CityForcastListInteractorProtocol, router: CityForcastListRouterProtocol ) {
         self.view = view
@@ -43,13 +42,24 @@ class CityForcastListPresenter: CityForcastListPresenterProtocol {
 // MARK: - CityForcastListOutputInteractorProtocol Implementation
 extension CityForcastListPresenter: CityForcastListOutputInteractorProtocol {
     func forecastListFetchedSuccessfully(forecastList: [Main]) {
-        print(forecastList)
         forecastData = forecastList
-        view?.updateForcastData()
+        view?.didFetchDataFromAPISuccessfully()
+    }
+    
+    func forecastListFetchedFromDBSuccessfully(forecastList: [Main]) {
+        forecastData = forecastList
+        view?.didFetchDataFromDBSuccessfully()
     }
     
     func forecastListFetchedWithError(_ error: Error) {
-
+        view?.didGetError(model: ErrorUIModel(title: "error", subtitle: error.localizedDescription))
     }
-    
+}
+
+extension CityForcastListPresenter {
+    func dequeueCellAt(index: Int, _ cell: TableViewCellSetupProtocol) {
+        let forecast = forecastData[index]
+        let cellModel = WeatherItemUIModel(day: "\(forecast.dt)", currentTemperature: "\(forecast.temp)", minTemperature: "\(forecast.tempMin)", maxTemperature: "\(forecast.tempMax)")
+        cell.confuguareCell(with: cellModel)
+    }
 }

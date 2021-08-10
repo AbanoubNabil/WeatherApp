@@ -26,28 +26,36 @@ class CityForcastListInteractor: CityForcastListInteractorProtocol {
         remoteDataSource.fetchForecast(params: RequestCityForecastModel(city: city), completionHandler: { [weak self] (result) in
             guard let self = self else { return }
             switch result {
-            case let .success(response): print(response)
+            case let .success(response):
                 // sent data To Presenter
-                let cityName = response.city.name
-                let cityForecast = response.forecast.map({ (forecast) -> Main in
-                    let forecastItem = forecast
-                    var main = forecast.main
-                    main?.cityName = cityName
-                    main?.dt = forecastItem.dt
-                    return main!
-                })
-                self.presenter?.forecastListFetchedSuccessfully(forecastList: cityForecast)
-                // cache data in local datasource
-                self.localDataSource.saveForecast(forcast: cityForecast)
+                self.handleSuccessRemoteFetch(response: response)
             case let .failure(error):
-                // call local data soruce for get local data
-                let cityForecast = self.localDataSource.fetchForecast(params: RequestCityForecastModel(city: city))
-                if cityForecast.isEmpty { // not show error secreen
-                    self.presenter?.forecastListFetchedWithError(error)
-                } else { // sent data To Presenter
-                    self.presenter?.forecastListFetchedSuccessfully(forecastList: cityForecast)
-                }
+                self.handleFailure(with: error, city: city)
             }
         })
+    }
+    
+   private func handleFailure(with error: Error, city: String) {
+        // call local data soruce for get local data
+        let cityForecast = self.localDataSource.fetchForecast(params: RequestCityForecastModel(city: city))
+        if cityForecast.isEmpty { // not show error secreen
+            self.presenter?.forecastListFetchedWithError(error)
+        } else { // sent data To Presenter
+            self.presenter?.forecastListFetchedFromDBSuccessfully(forecastList: cityForecast)
+        }
+    }
+    
+   private func handleSuccessRemoteFetch(response: ForecastResponse) {
+        let cityName = response.city.name
+    let cityForecast = response.forecast.compactMap({ (forecast) -> Main in
+            let forecastItem = forecast
+            var main = forecast.main
+            main.cityName = cityName
+            main.dt = forecastItem.dt
+            return main
+        })
+        self.presenter?.forecastListFetchedSuccessfully(forecastList: cityForecast)
+        // cache data in local datasource
+        self.localDataSource.saveForecast(forcast: cityForecast)
     }
 }

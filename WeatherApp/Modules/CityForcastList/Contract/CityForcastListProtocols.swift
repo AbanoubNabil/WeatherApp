@@ -41,25 +41,38 @@ protocol CityForcastListOutputInteractorProtocol: AnyObject {
     // Interactor -> Presenter
     func forecastListFetchedSuccessfully(forecastList: [Main])
     func forecastListFetchedWithError(_ error: Error)
+    func forecastListFetchedFromDBSuccessfully(forecastList: [Main]) 
 }
 
 // MARK: - CityForcastList Preseneter
 
 protocol CityForcastListPresenterProtocol: AnyObject {
+    // view -> Presenter
     var view: CityForcastListViewProtocol? { get set}
     var interactor: CityForcastListInteractorProtocol? { get set}
     var router: CityForcastListRouterProtocol? { get set }
-    var forecastCountItemsCount:Int { get }
-    // view -> Presenter
+    var forecastCountItemsCount: Int { get }
     func viewDidLoad()
     func didPressSearch(with city: String)
-    func dequeueCellAt(index: Int) -> Main
+    func dequeueCellAt(index: Int , _ cell: TableViewCellSetupProtocol)
 }
 
 // MARK: - CityForcastList View
 
 protocol CityForcastListViewProtocol: AnyObject {
-    var presenter: CityForcastListPresenterProtocol! { get set }
-    func updateForcastData()
     // Presenter -> View
+    var presenter: CityForcastListPresenterProtocol! { get set }
+    func didFetchDataFromAPISuccessfully()
+    func didFetchDataFromDBSuccessfully()
+    func didGetError(model: ErrorUIModel)
+}
+
+// MARK: - CityForcastListCell presenter
+
+protocol TableViewCellSetupProtocol: AnyObject {
+    func confuguareCell(with: WeatherItemUIModel)
+}
+
+protocol ErrorViewProtocol: AnyObject {
+    func configureError(model: ErrorUIModel)
 }

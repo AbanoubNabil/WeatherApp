@@ -9,12 +9,9 @@ import Foundation
 
 // MARK: - Forecast
 struct Forecast: Codable {
-    var main: Main?
+    var main: Main
     var dt: Int = 0
     
-    init() {
-        main?.dt = self.dt
-    }
     enum CodingKeys: String, CodingKey {
         case main, dt
     }
